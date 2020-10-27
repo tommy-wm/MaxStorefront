@@ -1,7 +1,7 @@
 {
   "appSettings": {
     "stage": {
-      "clearColor": "0x00000000",
+      "clearColor": "0xFF000000",
       "useImageWorker": true
     },
     "debug": true
@@ -10,7 +10,8 @@
     "inspector": true,
     "path": "./static",
     "log": true,
-    "showVersion": true,
+    "showVersion": false,
+    "showFps": false,
     "textureMode": true
   }
 }
