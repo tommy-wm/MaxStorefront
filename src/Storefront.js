@@ -1,5 +1,5 @@
-import { Lightning, Utils } from "@lightningjs/sdk"
-
+import { Lightning, Log, Router, Utils } from "@lightningjs/sdk"
+import Button from "./Button";
 
 export default class Storefront extends Lightning.Component {
 
@@ -8,25 +8,36 @@ export default class Storefront extends Lightning.Component {
       Background: {
         w: 1920,
         h: 1080,
-        color: 0xfffbb03b,
-        scale: .9,
-        alpha: .001,
-        src: Utils.asset("images/storefront-background.png"),
-        transitions: {
-          scale: {duration: .3, timingFunction: "ease-in-out"},
-          alpha: {duration: .3, timingFunction: "ease-in-out"},
+        // color: 0xfffbb03b,
+        src: Utils.asset("images/storefront-background.png")
+      },
+      Button: {
+        type: Button,
+        labelText: "Storefront Button",
+        x: 960,
+        y: 540,
+        mountX: .5,
+        signals: {
+          didPressButton: "_didPressedStorefrontButton"
         }
       }
-
     }
   }
 
-  _init() {
+  pageTransition() {
+    return "crossFade";
+  }
 
-    this.tag("Background").on("txLoaded", () => {
-      this.tag("Background").setSmooth("alpha", 1);
-      this.tag("Background").setSmooth("scale", 1);
-    });
+  _getFocused() {
+    return this.tag("Button");
+  }
+
+  _handleLeft() {
+    Router.focusWidget("menu");
+  }
+
+  _didPressedStorefrontButton() {
+    Log.info("Storefront::_didPressedStorefrontButton")
   }
 
 }

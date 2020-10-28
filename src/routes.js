@@ -12,7 +12,8 @@ export default {
     },
     {
       path: "storefront",
-      component: Storefront
+      component: Storefront,
+      widgets: ["Menu"]
     }
   ]
 }
